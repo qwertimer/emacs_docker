@@ -16,12 +16,14 @@ docker build -t doom-emacs -t qwertimer/doom-emacs emacs-docker/.
 
 
 if [ -f ~/.bashrc-personal ]; then 
-    if grep "emacs()" ~/.bashrc-personal
+    if grep "demacs()" ~/.bashrc-personal
     then
        echo "function already exists" 
     else 
         
-        echo "emacs() {docker run -it --rm -v "$PWD:/tmp:Z" doom-emacs:latest}" >> ~/.bashrc-personal
+        echo -e 'demacs() { \n
+        docker run -it --rm -v "$PWD:/tmp" doom-emacs:latest $1 
+        \n } && export -f demacs' >> ~/.bashrc-personal
     fi
 else
     echo "bashrc-personal doesn't exist adding it now"
@@ -29,8 +31,10 @@ else
 
     echo -n > ~/.bashrc-personal
 
-    echo "emacs() {docker run -it --rm -v "$PWD:/tmp:Z" doom-emacs:latest}" >> ~/.bashrc-personal
+    echo -e 'demacs() { \n
+    docker run -it --rm -v "$PWD:/tmp" doom-emacs:latest $1 
+    \n } && export -f demacs' >> ~/.bashrc-personal
 fi
 
 ## re-source bashrc
-#source ~/.bashrc
+source ~/.bashrc

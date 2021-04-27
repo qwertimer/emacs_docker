@@ -5,6 +5,6 @@ RUN pacman -S git ripgrep fd --noconfirm
 RUN git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 
 RUN echo -e "y\ny" | ~/.emacs.d/bin/doom install
-
-ENTRYPOINT ["bin/emacs"]
-CMD []
+WORKDIR /tmp/
+ENTRYPOINT ["/bin/emacs"]
+CMD [""]
