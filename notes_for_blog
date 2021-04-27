@@ -1,0 +1,1 @@
+Nothing worked when i tried aliasing with $PWD. Instead thanks to https://stackoverflow.com/questions/13260969/prevent-bash-alias-from-evaluating-statement-at-shell-start. I was able to create a function that is added to the bashrc-personal file which runs $PWD on usage of the program.
